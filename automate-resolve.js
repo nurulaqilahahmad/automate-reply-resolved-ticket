@@ -26,12 +26,9 @@ if (trackingID === undefined) {
   await page.locator("#recaptcha-submit").click();
   console.log("- Login Admin support page.");
 
-  //  KIV - Check if the ticket is resolved or not, if not, click resolve, if it's resolved, continue
+  //  Check if the ticket is resolved or not, if not, click resolve, if it's resolved, continue
   await new Promise(resolve => setTimeout(resolve, 1000));
   const markAsResolve = await page.$eval('div.value.center.out-close a', el => el.innerHTML);
-  // const isNotResolved = markAsResolve.filter(a => a.innerHTML == 'Mark as Resolved');
-  // const isNotResolved = markAsResolve.content();
-  // console.log(markAsResolve);
   if (markAsResolve === "Mark as Resolved") {
       await page.locator('div.value.center.out-close a').click();
       console.log('- Mark as Resolved.');
